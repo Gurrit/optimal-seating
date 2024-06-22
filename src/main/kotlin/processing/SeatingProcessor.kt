@@ -32,9 +32,7 @@ class SeatingProcessor(private val tspCalculator: TspCalculator) {
             to = it.seatingNeighbors.person2,
             weight = it.happinessUnit)
         }
-        seatings
-            .map { tspCalculator.findBestRoute(tspVertices) }
-            .maxBy { it.totalWeigh }
+        tspCalculator.findBestRoute(tspVertices)
         TODO()
     }
 

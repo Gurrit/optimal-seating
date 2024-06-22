@@ -17,7 +17,6 @@ class TspCalculator {
             // If we've found a path that contains all nodes, we just have to add the return-to-start-path, we assume that only one path exists
             val finalSegment = allSegments[traversedRoute.lastNode()]!!
                 .first { it == TspVertice(traversedRoute.firstNode(), traversedRoute.lastNode(), 0) }
-            println(finalSegment)
             listOf(traversedRoute.addSegment(finalSegment))
         } else {
             // Else we add another node that we don't already have in the traversed graph
