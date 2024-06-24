@@ -2,7 +2,10 @@ package com.gurrit
 
 import com.gurrit.parser.SeatingParser
 import com.gurrit.processing.SeatingProcessor
-import com.gurrit.processing.traveling_salesman.TspCalculator
+import com.gurrit.processing.travelingsalesman.TspCalculator
+
+
+private const val FILE_PATH = "optimal-seating.txt"
 
 fun main() {
 
@@ -10,7 +13,10 @@ fun main() {
     val tspCalculator = TspCalculator()
     val seatingProcessor = SeatingProcessor(tspCalculator)
 
-    val optimalSeating = OptimalSeating(seatingParser, seatingProcessor)
-    optimalSeating.calculateOptimalSeating("optimal-seating.txt")
+    val optimalSeatingService = OptimalSeatingService(seatingParser, seatingProcessor)
+    val optimalSeating = optimalSeatingService.calculateOptimalSeating(FILE_PATH)
+
+    println("The optimal seating found was the following: $optimalSeating")
+
 
 }

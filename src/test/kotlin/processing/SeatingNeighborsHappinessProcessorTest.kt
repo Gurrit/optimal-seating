@@ -1,15 +1,16 @@
 package processing
 
-import com.gurrit.model.Seating
+import com.gurrit.model.SeatingNeighborsHappiness
 import com.gurrit.model.SeatingNeighbors
 import com.gurrit.processing.SeatingProcessor
+import com.gurrit.processing.travelingsalesman.TspCalculator
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-class SeatingProcessorTest {
+class SeatingNeighborsHappinessProcessorTest {
 
-    private val seatingProcessor = SeatingProcessor()
+    private val seatingProcessor = SeatingProcessor(TspCalculator())
 
     @Test
     fun testReduceSeatingSameNeighbors() {
@@ -18,17 +19,17 @@ class SeatingProcessorTest {
         val happiness1 = 30
         val happiness2 = 50
 
-        val seating1 = Seating(
+        val seating1 = SeatingNeighborsHappiness(
             seatingNeighbors = SeatingNeighbors(person1, person2),
-            happinessUnit = happiness1
+            happinessValue = happiness1
         )
-        val seating2 = Seating(
+        val seating2 = SeatingNeighborsHappiness(
             seatingNeighbors = SeatingNeighbors(person1, person2),
-            happinessUnit = happiness2
+            happinessValue = happiness2
         )
-        val actual = seatingProcessor.sumNeighborValues(listOf(seating1, seating2))
+        val actual = seatingProcessor.sumNeighborSeatingValues(listOf(seating1, seating2))
         actual shouldHaveSize 1
-        actual.first().happinessUnit shouldBe (happiness1 + happiness2)
+        actual.first().happinessValue shouldBe (happiness1 + happiness2)
 
     }
 
@@ -39,15 +40,15 @@ class SeatingProcessorTest {
         val happiness1 = 30
         val happiness2 = 50
 
-        val seating1 = Seating(
+        val seating1 = SeatingNeighborsHappiness(
             seatingNeighbors = SeatingNeighbors(person1, person2),
-            happinessUnit = happiness1
+            happinessValue = happiness1
         )
-        val seating2 = Seating(
+        val seating2 = SeatingNeighborsHappiness(
             seatingNeighbors = SeatingNeighbors(person1, "Charles"),
-            happinessUnit = happiness2
+            happinessValue = happiness2
         )
-        val actual = seatingProcessor.sumNeighborValues(listOf(seating1, seating2))
+        val actual = seatingProcessor.sumNeighborSeatingValues(listOf(seating1, seating2))
         actual shouldHaveSize 2
     }
 }

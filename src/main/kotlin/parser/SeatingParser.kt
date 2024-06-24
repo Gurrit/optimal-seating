@@ -1,6 +1,6 @@
 package com.gurrit.parser
 
-import com.gurrit.model.Seating
+import com.gurrit.model.SeatingNeighborsHappiness
 import com.gurrit.model.SeatingNeighbors
 
 private const val LINE_TEMPLATE = "^(\\w+) would (\\w+) (\\d+) happiness units by sitting next to (\\w+)."
@@ -10,7 +10,7 @@ class SeatingParser {
     private val pattern = LINE_TEMPLATE.toRegex()
 
     // TODO Naming
-    fun parseSeatingLine(line: String): Seating? {
+    fun parseSeatingLine(line: String): SeatingNeighborsHappiness? {
         if (line.isBlank()) return null
         if (line.lines().size != 1) throw IllegalArgumentException("Only a single line must be parsed at a time")
 
@@ -18,9 +18,9 @@ class SeatingParser {
         // First is always full line
         val (person1, unitModifier, units, person2) = match.groupValues.drop(1)
 
-        return Seating(
+        return SeatingNeighborsHappiness(
             seatingNeighbors = SeatingNeighbors(person1, person2),
-            happinessUnit =  unitModifier.asSign() * units.toInt()
+            happinessValue =  unitModifier.asSign() * units.toInt()
         )
     }
 

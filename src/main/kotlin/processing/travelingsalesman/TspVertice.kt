@@ -1,6 +1,4 @@
-package com.gurrit.processing.traveling_salesman
-
-import com.gurrit.model.SeatingNeighbors
+package com.gurrit.processing.travelingsalesman
 
 data class TspVertice(
     val from: String,
@@ -15,11 +13,16 @@ data class TspVertice(
         other as TspVertice
 
         return this.hashCode() == other.hashCode()
+                && this.weight == other.weight
     }
 
     override fun hashCode(): Int {
         val hash1 = from.hashCode() * to.hashCode()
         val hash2 = from.hashCode() + to.hashCode()
         return hash2 * hash1
+    }
+
+    fun sameNodes(otherFrom: String, otherTo: String): Boolean {
+        return setOf(otherTo, otherFrom) == setOf(to, from)
     }
 }
