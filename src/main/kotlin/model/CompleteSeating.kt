@@ -14,7 +14,7 @@ data class CompleteSeating(
     }
 
     private fun formatSeatingPositions(): String {
-        return seatingNeighbors.joinToString(separator = " - ", postfix = " - ${ seatingNeighbors.last().person2 }") {
+        return seatingNeighbors.joinToString(separator = " - ") {
             it.person1
         }
     }
