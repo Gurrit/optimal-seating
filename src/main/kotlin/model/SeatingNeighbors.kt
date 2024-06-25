@@ -1,6 +1,6 @@
 package com.gurrit.model
 
-data class SeatingNeighborsHappiness(
-    val seatingNeighbors: SeatingPair,
+data class SeatingNeighbors(
+    val seatingPair: SeatingPair,
     val happinessValue: Int
 )

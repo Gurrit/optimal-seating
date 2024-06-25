@@ -1,7 +1,7 @@
 package com.gurrit.model
 
-data class Seating(
-    val seatingNeighbors: List<SeatingNeighbors>,
+data class CompleteSeating(
+    val seatingNeighbors: List<SeatingPair>,
     val totalHappiness: Int
 ){
 

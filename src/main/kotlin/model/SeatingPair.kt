@@ -1,6 +1,6 @@
 package com.gurrit.model
 
-data class SeatingNeighbors(
+data class SeatingPair(
     val person1: String,
     val person2: String
 ) {
@@ -9,7 +9,7 @@ data class SeatingNeighbors(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as SeatingNeighbors
+        other as SeatingPair
 
         return this.hashCode() == other.hashCode()
     }

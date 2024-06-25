@@ -11,7 +11,7 @@ data class TspGraph(
         return TspGraph(traversedPath + nextSegment, totalWeigh + nextSegment.weight)
     }
 
-    fun asList(): List<String> = this.traversedPath
+    fun asNodeList(): List<String> = this.traversedPath
         .fold(emptyList<String>()) { acc, segment -> acc + segment.from + segment.to }
         .distinct()
 

@@ -10,9 +10,9 @@ class TspCalculator {
         }
     }
 
-    private fun Map<String, List<TspVertice>>.findBestRoute(traversedRoute: TspGraph): TspGraph {
+    private fun GraphLookup.findBestRoute(traversedRoute: TspGraph): TspGraph {
         val allSegments = this
-        val traversedNodes = traversedRoute.asList()
+        val traversedNodes = traversedRoute.asNodeList()
         val routes = if (traversedNodes.toSet() == allSegments.keys) {
             // If we've found a path that contains all nodes, we just have to add the return-to-start-path, we assume that only one such path exists
             val finalSegment = allSegments[traversedNodes.last()]!!
@@ -26,4 +26,7 @@ class TspCalculator {
 
         return routes.maxBy { it.totalWeigh }
     }
+
 }
+
+private typealias GraphLookup = Map<String, List<TspVertice>>
